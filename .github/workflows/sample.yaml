@@ -1,0 +1,14 @@
+
+name : shell comands
+
+on : [push]
+jobs :
+  run-shell-commands:
+    runs-on: ubuntu-18.04
+    steps:
+      - name : echo a 
+        run: echo "hello world"
+      - name: multline script
+        run: |
+          node -v
+          npm -v
