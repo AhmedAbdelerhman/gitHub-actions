@@ -1,9 +1,9 @@
 
-name : shell comands
+name : ahmed  comands
 
 on : [push]
 jobs :
-  run-shell-commands:
+  run-dbah-commands:
     runs-on: ubuntu-latest
     steps:
       - name : echo a 
