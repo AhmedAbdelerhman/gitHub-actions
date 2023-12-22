@@ -43,3 +43,23 @@ run: |: Begins a multiline script block.
 Copy code
 node -v
 npm -v
+
+/* ---------------------- to enable more debug message ---------------------- */
+go to settings  -> Secrets and variables  and add ACTIONS_RUNNER_DEBUG  : true  , ACTIONS_STEP_DEBUG:true 
+
+
+/* ---------------------------- The run: | syntax --------------------------- */
+is used to indicate the start of a multiline script block.
+Here's an example of how you might use the run: | syntax in a GitHub Actions workflow:
+
+yaml
+Copy code
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run a multiline script
+        run: |
+          echo "This is line 1"
+          echo "This is line 2"
+          echo "This is line 3"

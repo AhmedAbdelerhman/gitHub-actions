@@ -1,14 +1,31 @@
 
-name : ahmed  comands
+# name : ahmed  comands
 
-on : [push]
-jobs :
-  run-dbah-commands:
+# on : [push]
+# jobs :
+#   run-dbah-commands:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name : echo a 
+#         run: echo "hello world"
+#       - name: multline script
+#         run: |
+#           node -v
+#           npm -v
+
+
+
+name : ahmed_workfloe
+
+on: [push]
+
+jobs:
+  sh-command:
     runs-on: ubuntu-latest
     steps:
-      - name : echo a 
-        run: echo "hello world"
-      - name: multline script
+      - name: runs command
+        run: echo "hello ahmed  world "
+      - name : mult taske 
         run: |
           node -v
-          npm -v
+          npm -v 
