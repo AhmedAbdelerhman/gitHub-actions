@@ -66,7 +66,7 @@ jobs:
 
 /* ----------------------------------- job ---------------------------------- */
 each Operating System need diffrent Job
-each job work in parall
+each job work in parallel
 
 /* ---------------------------------- shell --------------------------------- */
 to run anther terminal on os in vm   that means shell not exist on os but it will start vm for the shell
@@ -81,3 +81,44 @@ steps:
     shell: bash  # windows does not have bash shell  but it will start vm for you
 
 /* ---------------------------------- need ---------------------------------- */
+by default  jobs run in parallel if job depends on anther use 
+need: [ job name ]
+
+ex:
+
+# name : ahmed  comands
+
+# on : [push]
+# jobs :
+#   run-dbah-commands:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name : echo a 
+#         run: echo "hello world"
+#       - name: multline script
+#         run: |
+#           node -v
+#           npm -v
+
+
+
+name : ahmed_workfloe
+
+on: [push]
+
+jobs:
+  sh-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: runs command
+        run: echo "hello ahmed  world "
+    
+  windows-command:
+    runs-on: windows-latest
+    needs: [ sh-command]  # job  windows-command will runs after sh-command
+      - name: runs command
+        run: Get-Location 
+      - name: bash directory 
+        run: pwd
+        shell: bash
+
