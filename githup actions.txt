@@ -63,3 +63,7 @@ jobs:
           echo "This is line 1"
           echo "This is line 2"
           echo "This is line 3"
+
+/* ----------------------------------- job ---------------------------------- */
+each Operating System need diffrent Job
+each job work in parall

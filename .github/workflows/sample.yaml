@@ -31,3 +31,12 @@ jobs:
           npm -v 
       - name : python command 
         run: python -c "import platform; print(platform.processor())"
+  windows-command:
+    runs-on: windows-latest
+    steps:
+      - name: runs command
+        run: Get-Location 
+      - name: bash directory 
+        run: pwd
+        shell: bash
+
