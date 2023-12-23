@@ -33,6 +33,7 @@ jobs:
         run: python -c "import platform; print(platform.processor())"
   windows-command:
     runs-on: windows-latest
+    needs: [ sh-command]
     steps:
       - name: runs command
         run: Get-Location 

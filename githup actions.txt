@@ -67,3 +67,17 @@ jobs:
 /* ----------------------------------- job ---------------------------------- */
 each Operating System need diffrent Job
 each job work in parall
+
+/* ---------------------------------- shell --------------------------------- */
+to run anther terminal on os in vm   that means shell not exist on os but it will start vm for the shell
+ex:
+windows-command:
+runs-on: windows-latest
+steps:
+  - name: runs command
+    run: Get-Location 
+  - name: bash directory 
+    run: pwd
+    shell: bash  # windows does not have bash shell  but it will start vm for you
+
+/* ---------------------------------- need ---------------------------------- */
