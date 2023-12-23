@@ -122,3 +122,23 @@ jobs:
         run: pwd
         shell: bash
 
+
+* actions can have inputs  ( with:)  and we can use other actions that published in GitHub
+ex:
+
+name : javaScript-workflow
+
+on: [push]
+
+jobs:
+  run-js-job:
+    runs-on : ubuntu-latest
+    steps:
+     - name: import js 
+       id: greet # steps can has id 
+       uses: actions/hello-world-javascript-action@main   # use other actions 
+       with:
+        who-to-greet:  dbah
+     - name: log greet
+       run : echo "${{ steps.greet.output.time}}"
+ 

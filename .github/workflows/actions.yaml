@@ -8,6 +8,10 @@ jobs:
   run-js-job:
     runs-on : ubuntu-latest
     steps:
+     - name: list fils 
+       run: |
+         pwd
+         ls
      - name: import js 
        id: greet
        uses: actions/hello-world-javascript-action@main 
