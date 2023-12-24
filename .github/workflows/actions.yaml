@@ -2,7 +2,16 @@
 
 name : javaScript-workflow
    
-on: [push , pull_request]
+on:
+ 
+  pull_request:
+    types: 
+    - closed
+    - opened
+    - reopened
+    - assigned
+    
+  
 
 jobs:
   run-js-job:
