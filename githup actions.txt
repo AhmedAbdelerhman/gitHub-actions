@@ -142,3 +142,22 @@ jobs:
      - name: log greet
        run : echo "${{ steps.greet.output.time}}"
  
+ /* --------------------------- actions/checkout@v3 -------------------------- */
+ to clone your code to te current directory of the terminal use  actions/checkout@v3 available in GitHub
+ ex:
+
+ 
+name : javaScript-workflow
+   
+on: [push]
+
+jobs:
+  run-js-job:
+    runs-on : ubuntu-latest
+    steps:
+     - name: checkout
+       uses: actions/checkout@v3 # without this step the   ls -a will  not list any file 
+     - name: list fils 
+       run: |
+         pwd
+         ls -a
