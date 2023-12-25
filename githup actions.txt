@@ -248,3 +248,14 @@ on:
     branches:
       - main
 if you not specify the type it has default like opend 
+
+/* -------------------------------- schedule -------------------------------- */
+use do schedule  action every specific time 
+to learn more about cron go to  https://crontab.guru/
+
+ex:
+name : javaScript-workflow-schedule
+   
+on:
+  schedule:
+  - cron: "0/5 * * * *"  # run every 5 minites  the minimam time to run is every 5 minits
