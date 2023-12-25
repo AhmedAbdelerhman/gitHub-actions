@@ -161,3 +161,90 @@ jobs:
        run: |
          pwd
          ls -a
+      
+/* ------------------------------ GitHub Events ----------------------------- */
+
+Push Event:
+
+Triggered when commits are pushed to a branch.
+yaml
+Copy code
+on:
+  push:
+    branches:
+      - main
+
+Pull Request Event:
+
+Triggered when a pull request is opened, synchronized, or closed.
+yaml
+Copy code
+on:
+  pull_request:
+    branches:
+      - main
+
+Schedule Event:
+
+Triggered at scheduled intervals.
+yaml
+Copy code
+on:
+  schedule:
+    - cron: '0 0 * * *'
+Workflow Dispatch Event:
+
+Manually triggered by a user or an external event.
+yaml
+Copy code
+on:
+  workflow_dispatch:
+Repository Dispatch Event:
+
+Triggered by an external event using the GitHub API.
+yaml
+Copy code
+on:
+  repository_dispatch:
+    types: [my-event-type]
+Tag Event:
+
+Triggered when a new tag is created.
+yaml
+Copy code
+on:
+  push:
+    tags:
+      - '*'
+Create Event:
+
+Triggered when a branch or tag is created.
+yaml
+Copy code
+on:
+  create:
+    branches:
+      - main
+Delete Event:
+
+Triggered when a branch or tag is deleted.
+yaml
+Copy code
+on:
+  delete:
+    branches:
+      - main
+    
+
+/* ------------------------------ activity type ----------------------------- */
+some events has Specific actitvity type like pull_request
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - closed
+    branches:
+      - main
+if you not specify the type it has default like opend 
