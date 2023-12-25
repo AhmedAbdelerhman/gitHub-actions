@@ -1,9 +1,10 @@
 
 
-name : javaScript-workflow
+name : javaScript-workflow-schedule
    
 on:
- 
+  schedule:
+  - cron: "0/5 * * * *"
   pull_request:
     types: 
     - closed
