@@ -259,3 +259,31 @@ name : javaScript-workflow-schedule
 on:
   schedule:
   - cron: "0/5 * * * *"  # run every 5 minites  the minimam time to run is every 5 minits
+
+  /* --------------------------- repository_dispatch -------------------------- */
+
+  GitHub Actions external triggers allow you to start a workflow run in response to an external
+   event, such as an API call. This feature enables various use cases to automate workflows based on events outside the repository
+
+   Usecases 
+Manual Workflow Triggers:
+  You can set up an external trigger to manually start a workflow run.
+   This can be useful for scenarios where a human intervention is required before certain automated processes are initiated
+
+example
+1-GitHub actions   
+on:
+  # schedule:
+  # - cron: "0/5 * * * *"
+  repository_dispatch: 
+    types: [build] # could be anything 
+
+
+2- postman 
+  *post metho on  (https://api.github.com/repos/owner/repository/dispatches)  # ex :https://api.github.com/repos/AhmedAbdelerhman/gitHub-actions/dispatches
+  *get token from github settings  and put it on  basic authrization on filed password  (postman)
+  * send on bady json : {
+    "event_type":"build" #  build is the same word in gitHub action 
+}
+
+      
