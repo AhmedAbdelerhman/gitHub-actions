@@ -5,6 +5,13 @@ name : javaScript-workflow-schedule
 on:
   # schedule:
   # - cron: "0/5 * * * *"
+  push: 
+    branches: 
+      - master 
+      - "bug/*" # match bug/any  but not bug/any/any
+      - "bug/**"  # match bug/any/any
+    branches-ignore: 
+      - dev
   repository_dispatch: 
     types: [build]
       
