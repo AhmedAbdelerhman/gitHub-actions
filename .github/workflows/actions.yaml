@@ -12,6 +12,8 @@ on:
       - "bug/**"  # match bug/any/any
     branches-ignore: 
       - dev
+    paths-ignore: 
+      - "docs/**"  # ignore any fils inside docs file
   repository_dispatch: 
     types: [build]
       

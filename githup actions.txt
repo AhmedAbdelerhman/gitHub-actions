@@ -286,4 +286,38 @@ on:
     "event_type":"build" #  build is the same word in gitHub action 
 }
 
-      
+
+/* -------------------------------- branches -------------------------------- */
+select branch to trigger event  or exclude one 
+
+ 
+on:
+  # schedule:
+  # - cron: "0/5 * * * *"
+  push: 
+    branches: 
+      - master 
+      - "bug/*" # match bug/any  but not bug/any/any
+      - "bug/**"  # match bug/any/any
+    branches-ignore: 
+      - dev
+
+      /* ------------------------------ paths-ignore ------------------------------ */
+    
+    
+      name : javaScript-workflow-schedule
+   
+      on:
+        # schedule:
+        # - cron: "0/5 * * * *"
+        push: 
+          branches: 
+            - master 
+            - "bug/*" # match bug/any  but not bug/any/any
+            - "bug/**"  # match bug/any/any
+          branches-ignore: 
+            - dev
+          paths-ignore: 
+            - "docs/**"  # ignore any fils inside docs file
+
+           /* ---------------------------- $ vs {{}} vs ${} ---------------------------- */
