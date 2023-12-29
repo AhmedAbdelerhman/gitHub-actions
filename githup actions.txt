@@ -321,3 +321,57 @@ on:
             - "docs/**"  # ignore any fils inside docs file
 
            /* ---------------------------- $ vs {{}} vs ${} ---------------------------- */
+  
+           Dollar Sign ($):
+
+           The dollar sign is used for basic variable substitution.
+           It is used to reference environment variables directly without any additional processing.
+           For example: $GITHUB_REPOSITORY or $RUNNER_OS.
+           yaml
+           Copy code
+           jobs:
+             example-job:
+               runs-on: ubuntu-latest
+           
+               steps:
+                 - name: Print Repository Name
+                   run: echo "Repository: $GITHUB_REPOSITORY"
+
+           Single Curly Braces (${}):
+           
+           Single curly braces are used for variable substitution within strings.
+           It is useful when you need to include a variable's value within a string without any additional expressions.
+           For example: "This is a string with a variable: ${variable}".
+           yaml
+           Copy code
+           jobs:
+             example-job:
+               runs-on: ubuntu-latest
+           
+               steps:
+                 - name: Print Message
+                   run: echo "Message: ${GITHUB_REPOSITORY} is awesome!"
+
+           Double Curly Braces (${{ }}): "nested object"
+           
+           Double curly braces are used for more advanced features like expressions, operations, and context-specific values.
+           It allows you to perform operations and expressions within the context of GitHub Actions.
+           For example: ${{ env.VARIABLE_NAME }} or ${{ github.event_name }}.
+           yaml
+           Copy code
+           jobs:
+             example-job:
+               runs-on: ubuntu-latest
+           
+               steps:
+                 - name: Conditional Step
+                   if: ${{ github.event_name == 'push' }}
+                   run: echo "This step runs only on push events."
+           In summary:
+           
+           Use $ for basic variable substitution.
+           Use ${} for variable substitution within strings.
+           Use ${{ }} for more advanced features, expressions, and context-specific values in the GitHub Actions workflow syntax.
+
+    not any varable works with $ can work with ${}
+    
