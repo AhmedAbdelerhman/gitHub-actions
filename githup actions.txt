@@ -476,5 +476,22 @@ we need tool  gpg  install it in your local mation and go to file directory then
 
 1-gpg --symmetric --cipher-algo AES256 file.txt         
 2-  go to gitHub Secrets AND store the encryption key 
-3-
+3-name : Env Variable 
+
+on: [push]
+
+env:
+  Workflow_env:  ${{secrets.WF_DBAH_ENV}}
+
+jobs:
+  decrypt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: decrypt file                                                            # output file     # input file
+        run: gpg --quiet --batch --yes --decrypt  --passphrase="$PASSPHRASE" --output $HOME/secrets.json secrets.json.gpg 
+        env:           # added in secrets in repo on github 
+          PASSPHRASE: ${{secrets.PASSPHRASE}}
+      - name: print file content
+        run: cat $HOME/secrets.json
 
