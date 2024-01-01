@@ -374,4 +374,107 @@ on:
            Use ${{ }} for more advanced features, expressions, and context-specific values in the GitHub Actions workflow syntax.
 
     not any varable works with $ can work with ${}
-    
+
+ /* --------------------- env  (workflow vs job vs step ) -------------------- */
+
+ name : Env Variable 
+
+on: [push]
+
+env:
+  Workflow_env: Available to all  jobs  # avaable for all workflow
+
+jobs:
+  log-env:
+    runs-on: ubuntu-latest
+    env:  
+      job_env: Available only for local job  log-env  # available for job only
+    steps:
+     - name: log Env variables
+       env:
+          step_env: Available only for local step  step_env  #avaable for step only 
+       run: |
+         echo " WF_Env ${Workflow_env}"
+         echo " job_env ${job_env}"
+         echo " step_env ${step_env}"
+     -  name:  my step 2
+        run: |
+         echo " WF_Env ${Workflow_env}"
+         echo " job_env ${job_env}"
+         echo " step_env ${step_env}"
+  log-default-env:
+      runs-on: ubuntu-latest
+      steps:
+       - name: log log-default-env
+         run: |
+            echo "GitHub Repository: ${GITHUB_REPOSITORY}"
+            echo "Repository Owner: $GITHUB_REPOSITORY_OWNER"
+            echo "Repository Name: $GITHUB_REPOSITORY_NAME"
+       
+            echo " WF_Env ${Workflow_env}"
+            echo " job_env ${job_env}"
+            echo " step_env ${step_env}"
+            echo " event_name ${{github.event_name}}"
+
+/* ------------------------- how to add deycript env ------------------------ */
+go to github setting of the rep select  secrets then add env with value you want 
+this value will deycript in gitHub 
+ex: i made secreat called WF_DBAH_ENV in github 
+
+env:
+  Workflow_env:  ${{secrets.WF_DBAH_ENV}}
+
+
+/* ------------------------ GitHub Actions, contexts ------------------------ */
+its an object you can access   information about the GitHub environment, 
+the workflow, and the event that triggered the workflow most used (gitHub , job , secrets , env ,steps)
+
+github context: 
+
+github.actor: The username of the user or the name of the app that initiated the workflow.
+github.event_name: The name of the event that triggered the workflow (e.g., push, pull_request).
+github.repository: The owner and repository name (e.g., owner/repo).
+github.repository_owner: The owner of the repository.
+github.run_id: The unique identifier of the current run.
+github.run_number: The number of the current run for the workflow.
+github.sha: The commit SHA that triggered the workflow.
+github.workflow: The name of the workflow.
+
+job context:
+job.status: The status of the job (e.g., success, failure, cancelled).
+job.outputs: Outputs produced by the job that can be used in subsequent steps.
+
+runner context:
+runner.os: The operating system of the runner (e.g., Windows, Linux, macOS).
+runner.labels: Labels assigned to the runner.
+
+matrix context:
+matrix.<key>: Values specified in the matrix configuration, allowing for matrix builds.
+
+secrets context:
+secrets.<secret_name>: Provides access to secrets defined in the repository settings.
+
+steps context:
+steps.<step_id>: Allows you to reference the outputs of previous steps.
+
+env context:
+env.<variable>: Allows you to reference environment variables.
+
+needs context:
+needs.<job_id>.outputs.<output_name>: Accesses the outputs of a previous job.
+
+strategy context:
+strategy.matrix.<key>: Accesses values from the matrix in a matrix build.
+
+
+/* ------------------------------ encrypt files ----------------------------- */
+
+what if you have screat size than 64K that can secrets in github store 
+you will need to store it in file and encrypt it and decrypt it in github repo
+
+we need tool  gpg  install it in your local mation and go to file directory then 
+
+1-gpg --symmetric --cipher-algo AES256 file.txt         
+2-  go to gitHub Secrets AND store the encryption key 
+3-
+
